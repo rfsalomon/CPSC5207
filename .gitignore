@@ -9,3 +9,4 @@ log.txt
 /bin/*
 /config/*
 /app/chaincode-go/vendor/*
+/builders/*
