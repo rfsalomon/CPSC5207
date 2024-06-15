@@ -1,0 +1,5 @@
+{
+  "address": "asset-transfer-basic.org1.cpsc5207.ca:9999",
+  "dial_timeout": "10s",
+  "tls_required": false
+}
