@@ -5,7 +5,7 @@ Basic startup instructions
 
 Ensure docker is running.
 
-From the CPSC-5207 directory, move to the network subdirectory and run
+From the CPSC5207 directory, move to the network subdirectory and run
 
 ./network.sh prereq
 
