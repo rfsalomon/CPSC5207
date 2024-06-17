@@ -9,10 +9,10 @@
 const { Gateway, Wallets } = require('fabric-network');
 const FabricCAServices = require('fabric-ca-client');
 const path = require('path');
-const { buildCAClient, registerAndEnrollUser, enrollAdmin } = require('../../test-application/javascript/CAUtil.js');
-const { buildCCPOrg1, buildWallet } = require('../../test-application/javascript/AppUtil.js');
+const { buildCAClient, registerAndEnrollUser, enrollAdmin } = require('CAUtil.js');
+const { buildCCPOrg1, buildWallet } = require('AppUtil.js');
 
-const channelName = process.env.CHANNEL_NAME || 'mychannel';
+const channelName = process.env.CHANNEL_NAME || 'cpsc5207';
 const chaincodeName = process.env.CHAINCODE_NAME || 'basic';
 
 const mspOrg1 = 'Org1MSP';
@@ -28,7 +28,7 @@ function prettyJSONString(inputString) {
 //   and 2 certificate authorities
 //         ===> from directory /fabric-samples/test-network
 //         ./network.sh up createChannel -ca
-// - Use any of the asset-transfer-basic chaincodes deployed on the channel "mychannel"
+// - Use any of the asset-transfer-basic chaincodes deployed on the channel "cpsc5207"
 //   with the chaincode name of "basic". The following deploy command will package,
 //   install, approve, and commit the javascript chaincode, all the actions it takes
 //   to deploy a chaincode to a channel.
@@ -77,7 +77,7 @@ async function main() {
 
 		// build an instance of the fabric ca services client based on
 		// the information in the network configuration
-		const caClient = buildCAClient(FabricCAServices, ccp, 'ca.org1.example.com');
+		const caClient = buildCAClient(FabricCAServices, ccp, 'ca.org1.cpsc5207.ca');
 
 		// setup the wallet to hold the credentials of the application user
 		const wallet = await buildWallet(Wallets, walletPath);
