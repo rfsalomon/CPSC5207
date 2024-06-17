@@ -10,7 +10,7 @@ import * as path from 'path';
 
 const buildCCPOrg1 = (): Record<string, any> => {
     // load the common connection configuration file
-    const ccpPath = path.resolve(__dirname, '..', '..', '..', '..', 'test-network',
+    const ccpPath = path.resolve(__dirname, '..', '..', '..', '..', 'network',
         'organizations', 'peerOrganizations', 'org1.cpsc5207.ca', 'connection-org1.json');
     const fileExists = fs.existsSync(ccpPath);
     if (!fileExists) {

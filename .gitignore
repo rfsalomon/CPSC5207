@@ -10,3 +10,4 @@ log.txt
 /config/*
 /app/chaincode-go/vendor/*
 /builders/*
+install-fabric.sh

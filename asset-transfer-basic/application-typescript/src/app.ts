@@ -16,9 +16,9 @@ const walletPath = path.join(__dirname, 'wallet');
 const org1UserId = 'typescriptAppUser';
 
 // pre-requisites:
-// - fabric-sample two organization test-network setup with two peers, ordering service,
+// - fabric-sample two organization network setup with two peers, ordering service,
 //   and 2 certificate authorities
-//         ===> from directory /fabric-samples/test-network
+//         ===> from directory /fabric-samples/network
 //         ./network.sh up createChannel -ca
 // - Use any of the asset-transfer-basic chaincodes deployed on the channel "mychannel"
 //   with the chaincode name of "basic". The following deploy command will package,
