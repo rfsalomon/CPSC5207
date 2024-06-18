@@ -16,22 +16,22 @@ type SmartContract struct {
 // Insert struct field in alphabetic order => to achieve determinism across languages
 // golang keeps the order when marshal to json but doesn't order automatically
 type Asset struct {
-	AppraisedValue int    `json:"AppraisedValue"`
-	Color          string `json:"Color"`
-	ID             string `json:"ID"`
-	Owner          string `json:"Owner"`
-	Size           int    `json:"Size"`
+	ID          string `json:"ID"`
+	DataHash    string `json:"DataHash"`
+	Description string `json:"Description"`
+	Assignor    string `json:"Assignor"`
+	Assignee    string `json:"Assignee"`
 }
 
 // InitLedger adds a base set of assets to the ledger
 func (s *SmartContract) InitLedger(ctx contractapi.TransactionContextInterface) error {
 	assets := []Asset{
-		{ID: "asset1", Color: "blue", Size: 5, Owner: "Tomoko", AppraisedValue: 300},
-		{ID: "asset2", Color: "red", Size: 5, Owner: "Brad", AppraisedValue: 400},
-		{ID: "asset3", Color: "green", Size: 10, Owner: "Jin Soo", AppraisedValue: 500},
-		{ID: "asset4", Color: "yellow", Size: 10, Owner: "Max", AppraisedValue: 600},
-		{ID: "asset5", Color: "black", Size: 15, Owner: "Adriana", AppraisedValue: 700},
-		{ID: "asset6", Color: "white", Size: 15, Owner: "Michel", AppraisedValue: 800},
+		{ID: "asset1", DataHash: "7a60db20524fcbbc4d91730ec70af25947f28c53", Description: "en_US NLP Curated Data", Assignor: "Org1", Assignee: ""},
+		{ID: "asset2", DataHash: "2aa70f2ce17f1baf0c17f9a7ec619d8a6c31684b", Description: "pt_BR NLP Curated Conversations", Assignor: "Org1", Assignee: ""},
+		{ID: "asset3", DataHash: "480f39fbd508fd72e911002f626b071b2bd2a32b", Description: "Encyclopaedia Galactica - Full Text", Assignor: "Org1", Assignee: ""},
+		{ID: "asset4", DataHash: "8c79617438a85f874a1bc4d0b0d5e6028eca452a", Description: "HHTG Intergalactic Preview", Assignor: "Org1", Assignee: ""},
+		{ID: "asset5", DataHash: "89c449f008ae754267a399f20c2b69f05d96affe", Description: "Practical Mathematics for AI", Assignor: "Org1", Assignee: ""},
+		{ID: "asset6", DataHash: "460255b601ec89c80fd3886e36d2e76e93876836", Description: "Neverwinter forest map", Assignor: "Org1", Assignee: ""},
 	}
 
 	for _, asset := range assets {
@@ -50,7 +50,7 @@ func (s *SmartContract) InitLedger(ctx contractapi.TransactionContextInterface) 
 }
 
 // CreateAsset issues a new asset to the world state with given details.
-func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface, id string, color string, size int, owner string, appraisedValue int) error {
+func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface, id string, datahash string, description string, assignor string, assignee string) error {
 	exists, err := s.AssetExists(ctx, id)
 	if err != nil {
 		return err
@@ -60,11 +60,11 @@ func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface,
 	}
 
 	asset := Asset{
-		ID:             id,
-		Color:          color,
-		Size:           size,
-		Owner:          owner,
-		AppraisedValue: appraisedValue,
+		ID:          id,
+		DataHash:    datahash,
+		Description: description,
+		Assignor:    assignor,
+		Assignee:    assignee,
 	}
 	assetJSON, err := json.Marshal(asset)
 	if err != nil {
@@ -94,7 +94,7 @@ func (s *SmartContract) ReadAsset(ctx contractapi.TransactionContextInterface, i
 }
 
 // UpdateAsset updates an existing asset in the world state with provided parameters.
-func (s *SmartContract) UpdateAsset(ctx contractapi.TransactionContextInterface, id string, color string, size int, owner string, appraisedValue int) error {
+func (s *SmartContract) UpdateAsset(ctx contractapi.TransactionContextInterface, id string, datahash string, description string, assignor string, assignee string) error {
 	exists, err := s.AssetExists(ctx, id)
 	if err != nil {
 		return err
@@ -105,11 +105,11 @@ func (s *SmartContract) UpdateAsset(ctx contractapi.TransactionContextInterface,
 
 	// overwriting original asset with new asset
 	asset := Asset{
-		ID:             id,
-		Color:          color,
-		Size:           size,
-		Owner:          owner,
-		AppraisedValue: appraisedValue,
+		ID:          id,
+		DataHash:    datahash,
+		Description: description,
+		Assignor:    assignor,
+		Assignee:    assignee,
 	}
 	assetJSON, err := json.Marshal(asset)
 	if err != nil {
@@ -117,19 +117,6 @@ func (s *SmartContract) UpdateAsset(ctx contractapi.TransactionContextInterface,
 	}
 
 	return ctx.GetStub().PutState(id, assetJSON)
-}
-
-// DeleteAsset deletes an given asset from the world state.
-func (s *SmartContract) DeleteAsset(ctx contractapi.TransactionContextInterface, id string) error {
-	exists, err := s.AssetExists(ctx, id)
-	if err != nil {
-		return err
-	}
-	if !exists {
-		return fmt.Errorf("the asset %s does not exist", id)
-	}
-
-	return ctx.GetStub().DelState(id)
 }
 
 // AssetExists returns true when asset with given ID exists in world state
@@ -149,8 +136,8 @@ func (s *SmartContract) TransferAsset(ctx contractapi.TransactionContextInterfac
 		return "", err
 	}
 
-	oldOwner := asset.Owner
-	asset.Owner = newOwner
+	oldOwner := asset.Assignee
+	asset.Assignee = newOwner
 
 	assetJSON, err := json.Marshal(asset)
 	if err != nil {

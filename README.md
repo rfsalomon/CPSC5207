@@ -17,6 +17,6 @@ To start the network:
 
 This will start the network with one Orderer + CA, one Peer + CA for Org 1, and one Peer + CA for Org2 all using leveldb
 
-To install the sample go chaincode:
+To install the go chaincode:
 
-./network.sh deployCC -ccn basic -ccp ../app/chaincode-go/ -ccl go -c cpsc5207
+./network.sh deployCC -ccn asset_contract -ccp ../app/chaincode-go/ -ccl go -c cpsc5207
