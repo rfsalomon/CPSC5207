@@ -1,4 +1,4 @@
-version: '3.7'
+#version: '3.7'
 
 volumes:
   orderer.cpsc5207.ca:
@@ -16,7 +16,7 @@ services:
 
   orderer.cpsc5207.ca:
     container_name: orderer.cpsc5207.ca
-    image: hyperledger/fabric-orderer:latest
+    image: cpsc5207/fabric-orderer:latest
     labels:
       service: hyperledger-fabric
     environment:
@@ -58,7 +58,7 @@ services:
 
   orderer2.cpsc5207.ca:
     container_name: orderer2.cpsc5207.ca
-    image: hyperledger/fabric-orderer:latest
+    image: cpsc5207/fabric-orderer:latest
     labels:
       service: hyperledger-fabric
     environment:
@@ -100,7 +100,7 @@ services:
 
   orderer3.cpsc5207.ca:
     container_name: orderer3.cpsc5207.ca
-    image: hyperledger/fabric-orderer:latest
+    image: cpsc5207/fabric-orderer:latest
     labels:
       service: hyperledger-fabric
     environment:
@@ -142,7 +142,7 @@ services:
 
   orderer4.cpsc5207.ca:
     container_name: orderer4.cpsc5207.ca
-    image: hyperledger/fabric-orderer:latest
+    image: cpsc5207/fabric-orderer:latest
     labels:
       service: hyperledger-fabric
     environment:
@@ -187,7 +187,7 @@ services:
 
   peer0.org1.cpsc5207.ca:
     container_name: peer0.org1.cpsc5207.ca
-    image: hyperledger/fabric-peer:latest
+    image: cpsc5207/fabric-peer:latest
     labels:
       service: hyperledger-fabric
     environment:
@@ -226,7 +226,7 @@ services:
 
   peer0.org2.cpsc5207.ca:
     container_name: peer0.org2.cpsc5207.ca
-    image: hyperledger/fabric-peer:latest
+    image: cpsc5207/fabric-peer:latest
     labels:
       service: hyperledger-fabric
     environment:

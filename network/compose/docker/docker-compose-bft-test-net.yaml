@@ -3,11 +3,11 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-version: '3.7'
+#version: '3.7'
 services:
   peer0.org1.cpsc5207.ca:
     container_name: peer0.org1.cpsc5207.ca
-    image: hyperledger/fabric-peer:latest
+    image: cpsc5207/fabric-peer:latest
     labels:
       service: hyperledger-fabric
     environment:
@@ -20,7 +20,7 @@ services:
 
   peer0.org2.cpsc5207.ca:
     container_name: peer0.org2.cpsc5207.ca
-    image: hyperledger/fabric-peer:latest
+    image: cpsc5207/fabric-peer:latest
     labels:
       service: hyperledger-fabric
     environment:
