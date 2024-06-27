@@ -1,5 +1,11 @@
 # CPSC5207
-Major rebuild
+
+## Term Project Report submitted to Dr. Khalil Abuosba in partial fulfillment of the requirements of the Master’s Course in Introduction to Cloud Computing (CPSC-5207) – Spring 2024
+
+## Group 3
+### Yinfeng Chen
+### Krupa Kadecha
+### Roberto Salomon
 
 Basic startup instructions
 
