@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Copyright IBM Corp All Rights Reserved
+# Adapted to the term project for CPSC5207 Spring 2024
 #
 # SPDX-License-Identifier: Apache-2.0
 #
