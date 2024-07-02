@@ -4,6 +4,7 @@
 /network/organizations/ordererOrganizations/*
 /network/organizations/peerOrganizations/*
 /network/system-genesis-block/*
+/network/channel-artifacts/*
 *.tar.gz
 log.txt
 /bin/*
