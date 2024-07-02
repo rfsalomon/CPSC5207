@@ -136,7 +136,7 @@ func (s *SmartContract) TransferAsset(ctx contractapi.TransactionContextInterfac
 		return "", err
 	}
 
-	oldOwner := asset.Assignee
+	//	oldOwner := asset.Assignee
 	asset.Assignee = newOwner
 
 	assetJSON, err := json.Marshal(asset)
@@ -149,7 +149,7 @@ func (s *SmartContract) TransferAsset(ctx contractapi.TransactionContextInterfac
 		return "", err
 	}
 
-	return oldOwner, nil
+	return asset.Assignee, nil
 }
 
 // GetAllAssets returns all assets found in world state
