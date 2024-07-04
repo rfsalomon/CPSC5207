@@ -26,3 +26,11 @@ This will start the network with one Orderer + CA, one Peer + CA for Org 1, and 
 To install the go chaincode:
 
 ./network.sh deployCC -ccn asset_contract -ccp ../app/chaincode-go/ -ccl go -c cpsc5207
+
+Once the chaincode is installed, cd into the API/rest-api-go directory and run
+
+go mod download
+
+and then
+
+go run main.go

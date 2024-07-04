@@ -1,11 +1,11 @@
-# Asset Transfer REST API Sample
+# REST API
 
 This is a simple REST server written in golang with endpoints for chaincode invoke and query.
 
   
 ## Usage
 
-- Setup fabric test network and deploy the asset transfer chaincode by [following this instructions](https://hyperledger-fabric.readthedocs.io/en/release-2.4/test_network.html).
+- Setup fabric network and deploy the asset_contract chaincode.
 
 - cd into rest-api-go directory
 - Download required dependencies using `go mod download`
