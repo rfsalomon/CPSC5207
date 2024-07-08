@@ -1,0 +1,211 @@
+openapi: 3.0.1
+info:
+  title: Ledger API
+  description: API to interact with the ledger for asset management.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3030
+paths:
+  /invoke:
+    post:
+      summary: Creates a new asset in the ledger
+      description: Creates a new asset in the ledger.
+      parameters:
+        - in: query
+          name: channelid
+          required: true
+          schema:
+            type: string
+          description: Channel ID
+          example: cpsc5207
+        - in: query
+          name: chaincodeid
+          required: true
+          schema:
+            type: string
+          description: Chaincode ID
+          example: asset_contract
+        - in: query
+          name: function
+          required: true
+          schema:
+            type: string
+          description: Function name
+          example: CreateAsset
+        - in: query
+          name: args
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+          description: Arguments for the function
+          example: ["asset99", "480f39fbd508fd72e911002f626b071b2bd2a32b", "Just another sample description", "Org1", "Org2"]
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                    description: ID of the transaction
+                    example: 224bc5bb6f6838e81a6cc14d1ec6c5ac630f80ecfd5347ee57d17498de9d29d3
+                  response:
+                    type: string
+                    description: Response message
+                    example: Response
+    put:
+      summary: Assigns the asset to a new authorized assignee
+      description: Assigns the asset to a new authorized assignee.
+      parameters:
+        - in: query
+          name: channelid
+          required: true
+          schema:
+            type: string
+          description: Channel ID
+          example: cpsc5207
+        - in: query
+          name: chaincodeid
+          required: true
+          schema:
+            type: string
+          description: Chaincode ID
+          example: asset_contract
+        - in: query
+          name: function
+          required: true
+          schema:
+            type: string
+          description: Function name
+          example: TransferAsset
+        - in: query
+          name: args
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+          description: Arguments for the function
+          example: ["asset1", "Org2"]
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                    description: ID of the transaction
+                    example: 2fa012f63d9511c45a3018fe45e9ff6cbeabeee6275ed6f98596b050efad59d2
+                  response:
+                    type: string
+                    description: New assignee
+                    example: Org2
+  /query:
+    get:
+      summary: Returns the definition of a specified asset
+      description: Returns the definition of a specified asset.
+      parameters:
+        - in: query
+          name: channelid
+          required: true
+          schema:
+            type: string
+          description: Channel ID
+          example: cpsc5207
+        - in: query
+          name: chaincodeid
+          required: true
+          schema:
+            type: string
+          description: Chaincode ID
+          example: asset_contract
+        - in: query
+          name: function
+          required: true
+          schema:
+            type: string
+          description: Function name
+          example: ReadAsset
+        - in: query
+          name: args
+          required: true
+          schema:
+            type: string
+          description: Asset ID
+          example: asset1
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ID:
+                    type: string
+                    description: Asset ID
+                    example: asset1
+                  DataHash:
+                    type: string
+                    description: Data hash of the asset
+                    example: 7a60db20524fcbbc4d91730ec70af25947f28c53
+                  Description:
+                    type: string
+                    description: Description of the asset
+                    example: en_US NLP Curated Data
+                  Assignor:
+                    type: string
+                    description: Assignor of the asset
+                    example: Org1
+                  Assignee:
+                    type: string
+                    description: Assignee of the asset
+                    example: Org2
+    get:
+      summary: Checks if a specified asset exists
+      description: Returns a boolean indicating if a specified asset exists.
+      parameters:
+        - in: query
+          name: channelid
+          required: true
+          schema:
+            type: string
+          description: Channel ID
+          example: cpsc5207
+        - in: query
+          name: chaincodeid
+          required: true
+          schema:
+            type: string
+          description: Chaincode ID
+          example: asset_contract
+        - in: query
+          name: function
+          required: true
+          schema:
+            type: string
+          description: Function name
+          example: AssetExists
+        - in: query
+          name: args
+          required: true
+          schema:
+            type: string
+          description: Asset ID
+          example: asset1
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: boolean
+                description: Response indicating if the asset exists
+                example: true
