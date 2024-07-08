@@ -34,3 +34,5 @@ go mod download
 and then
 
 go run main.go
+
+Code based on the Hyperledger Fabric foundation test network project.
