@@ -21,5 +21,7 @@ func (setup OrgSetup) Query(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Error: %s", err)
 		return
 	}
-	fmt.Fprintf(w, "Response: %s", evaluateResponse)
+	//fmt.Fprintf(w, "Response: %s", evaluateResponse)
+	// return the response as a JSON object
+	fmt.Fprintf(w, "%s", evaluateResponse)
 }
