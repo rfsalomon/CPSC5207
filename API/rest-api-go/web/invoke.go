@@ -9,7 +9,7 @@ import (
 
 // Invoke handles chaincode invoke requests.
 func (setup *OrgSetup) Invoke(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Received Invoke request")
+	//fmt.Println("Received Invoke request")
 	if err := r.ParseForm(); err != nil {
 		fmt.Fprintf(w, "ParseForm() err: %s", err)
 		return
@@ -18,7 +18,7 @@ func (setup *OrgSetup) Invoke(w http.ResponseWriter, r *http.Request) {
 	channelID := r.FormValue("channelid")
 	function := r.FormValue("function")
 	args := r.Form["args"]
-	fmt.Printf("channel: %s, chaincode: %s, function: %s, args: %s\n", channelID, chainCodeName, function, args)
+	//fmt.Printf("channel: %s, chaincode: %s, function: %s, args: %s\n", channelID, chainCodeName, function, args)
 	network := setup.Gateway.GetNetwork(channelID)
 	contract := network.GetContract(chainCodeName)
 	txn_proposal, err := contract.NewProposal(function, client.WithArguments(args...))
