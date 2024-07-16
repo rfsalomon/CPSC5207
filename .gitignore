@@ -14,3 +14,4 @@ log.txt
 install-fabric.sh
 start
 /application/node_modules/*
+/application/.dockerignore
