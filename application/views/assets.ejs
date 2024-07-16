@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assets in Record</title>
+
+    <style>
+        .table-container {
+            width: 50%; /* adjust this as needed */
+            margin-left: auto;
+            margin-right: auto;
+        }
+    
+        .table-container table {
+            font-size: 18px;
+            width: 100%;
+        }
+    
+        .table-container hr {
+            border-top: 1px solid rgb(11, 120, 222);
+        }
+    
+        @media (max-width: 1200px) {
+            .table-container table {
+                font-size: 16px;
+            }
+        }
+        @media (max-width: 600px) {
+            .table-container table {
+                font-size: 9px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="/images/laurentian.png" alt="Laurentian University" style="width: 50vw; display: block; margin: 0 auto;">
+    <img src="/images/bharti.png" alt="Bharti School of Engineering and Computer Science" style="width: 30vw; display: block; margin: 0 auto;">
+    <hr style="border-top: 1px solid rgb(11, 120, 222); margin: 0;">
+    <center><h1>Assets in Record</h1></center>
+    <ul>
+        <div class="table-container">
+            <table>
+                <% assets.forEach(asset => { %>
+                <tr>
+                    <th style="text-align: left;">Asset ID</th>
+                    <td><%= asset.ID %></td>
+                </tr>
+                <tr>
+                    <th style="text-align: left;">Hash</th>
+                    <td><%= asset.DataHash %></td>
+                </tr>
+                <tr>
+                    <th style="text-align: left;">Description</th>
+                    <td><%= asset.Description %></td>
+                </tr>
+                <tr>
+                    <th style="text-align: left;">Owner</th>
+                    <td><%= asset.Assignor %></td>
+                </tr>
+                <tr>
+                    <th style="text-align: left;">Assigned</th>
+                    <td><%= asset.Assignee %></td>
+                </tr>
+                <tr>
+                    <td colspan= "3"><hr></td>
+                </tr>
+                <% }); %>
+            </table>
+        </div>
+
+</ul>
+</body>
+</html>

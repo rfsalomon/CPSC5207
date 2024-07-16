@@ -12,3 +12,5 @@ log.txt
 /app/chaincode-go/vendor/*
 /builders/*
 install-fabric.sh
+start
+/application/node_modules/*

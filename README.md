@@ -36,3 +36,5 @@ and then
 go run main.go
 
 Code based on the Hyperledger Fabric foundation test network project.
+
+## A sample node.js application is also included in the application folder

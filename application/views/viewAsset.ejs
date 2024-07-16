@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assets in Record</title>
+
+    <style>
+        .dropdown-container {
+            width: 50%; /* adjust this as needed */
+            margin: 20px auto;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <img src="/images/laurentian.png" alt="Laurentian University" style="width: 50vw; display: block; margin: 0 auto;">
+    <img src="/images/bharti.png" alt="Bharti School of Engineering and Computer Science" style="width: 30vw; display: block; margin: 0 auto;">
+    <hr style="border-top: 1px solid rgb(11, 120, 222); margin: 0;">
+    <center><h1>View Asset Details</h1></center>
+    <div class="dropdown-container">
+        <select name="assets" id="assetsDropdown">
+            <% assets.forEach(asset => { %>
+                <option value="<%= asset.ID %>"><%= asset.ID %> - <%= asset.Description %></option>
+            <% }); %>
+        </select>
+    </div>
+    <div id="assetDetailsContainer"></div>
+    
+    <script>
+        var assets = <%- JSON.stringify(assets) %>;
+
+        document.getElementById('assetsDropdown').addEventListener('change', function() {
+            var selectedAssetId = this.value;
+            var asset = assets.find(asset => asset.ID === selectedAssetId);
+            var container = document.getElementById('assetDetailsContainer');
+            container.innerHTML = `
+                <table>
+                    <tr><th>ID</th><td>${asset.ID}</td></tr>
+                    <tr><th>DataHash</th><td>${asset.DataHash}</td></tr>
+                    <tr><th>Description</th><td>${asset.Description}</td></tr>
+                    <tr><th>Assignor</th><td>${asset.Assignor}</td></tr>
+                    <tr><th>Assignee</th><td>${asset.Assignee}</td></tr>
+                </table>
+            `;
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var dropdown = document.getElementById('assetsDropdown');
+            var event = new Event('change');
+            dropdown.dispatchEvent(event);
+        });
+    </script>
+</body>
+</html>

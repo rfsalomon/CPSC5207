@@ -1,0 +1,57 @@
+<!-- createAssetForm.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Asset</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .form-container input, .form-container textarea, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #0b78de;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            background-color: #0b78de;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #095ca5;
+        }
+
+        hr {
+            border-top: 1px solid rgb(11, 120, 222);
+        }
+    </style>
+</head>
+<body>
+    <img src="/images/laurentian.png" alt="Laurentian University" style="width: 50vw; display: block; margin: 0 auto;">
+    <img src="/images/bharti.png" alt="Bharti School of Engineering and Computer Science" style="width: 30vw; display: block; margin: 0 auto;">
+    <hr>
+    <center><h1>Create New Asset</h1></center>
+    <div class="form-container">
+        <form action="/create" method="post">
+            <input type="text" id="id" name="id" placeholder="Asset ID" required>
+            <input type="text" id="dataHash" name="dataHash" placeholder="Data Hash" required>
+            <textarea id="description" name="description" placeholder="Description" required></textarea>
+            <input type="text" id="assignor" name="assignor" placeholder="Assignor" required>
+            <input type="text" id="assignee" name="assignee" placeholder="Assignee">
+            <button type="submit">Create Asset</button>
+        </form>
+    </div>
+</body>
+</html>

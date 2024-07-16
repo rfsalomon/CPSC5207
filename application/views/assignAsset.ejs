@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign Asset</title>
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .popup-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+        }
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .table-container {
+            width: 80%; /* adjust this as needed */
+            margin-left: auto;
+            margin-right: auto;
+        }
+    
+        .table-container table {
+            font-size: 18px;
+            width: 100%;
+        }
+    
+        .table-container hr {
+            border-top: 1px solid rgb(11, 120, 222);
+        }
+    
+        @media (max-width: 1200px) {
+            .table-container table {
+                font-size: 16px;
+            }
+        }
+        @media (max-width: 600px) {
+            .table-container table {
+                font-size: 9px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="/images/laurentian.png" alt="Laurentian University" style="width: 50vw; display: block; margin: 0 auto;">
+    <img src="/images/bharti.png" alt="Bharti School of Engineering and Computer Science" style="width: 30vw; display: block; margin: 0 auto;">
+    <hr>
+    <center><h1>Available Assets</h1></center>
+    <ul>
+        <div class="table-container">
+            <table>
+            <% assets.forEach(asset => { %>
+                <tr>
+                    <th style="text-align: left;">Asset ID</th>
+                    <td colspan="2"><%= asset.ID %></td>
+                </tr>
+                <tr>
+                    <th style="text-align: left;">Description</th>
+                    <td><%= asset.Description %></td>
+                    <td><button onclick="showPopup('<%= asset.ID %>')">Assign</button></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><hr></td>
+                </tr>
+        <% }); %>
+    </table>
+    </div>
+    </ul>
+
+    <div id="assignPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h3>Assign Asset</h3>
+            <p></p>
+            <label for="assignee">Assignee:</label>
+            <input type="text" id="assignee" name="assignee">
+            <br><br>
+            <button onclick="assignAsset()">Assign Asset</button>
+        </div>
+    </div>
+
+    <script>
+        let currentAssetId = '';
+    
+        function showPopup(assetId) {
+            currentAssetId = assetId;
+            document.getElementById('assignPopup').style.display = 'block';
+        }
+    
+        function closePopup() {
+            document.getElementById('assignPopup').style.display = 'none';
+        }
+
+        async function assignAsset() {
+            const assignee = document.getElementById('assignee').value;
+            const url = `http://localhost:3030/invoke?channelid=cpsc5207&chaincodeid=asset_contract&function=TransferAsset&args=${currentAssetId}&args=${assignee}`;
+                const response = await fetch(url, {
+                    method: 'PUT', 
+            });
+            closePopup();
+        }
+        
+    </script>
+</body>
+</html>

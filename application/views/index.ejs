@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image and Links</title>
+    <style>
+        @media (min-width: 600px) {
+            ul li {
+                font-size: 30px;
+                line-height: 2;
+            }
+        }
+
+        ul li a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        ul li a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <img src="/images/laurentian.png" alt="Laurentian University" style="width: 50vw; display: block; margin: 0 auto;">
+    <img src="/images/bharti.png" alt="Bharti School of Engineering and Computer Science" style="width: 30vw; display: block; margin: 0 auto;">
+    <hr style="border-top: 1px solid rgb(11, 120, 222); margin: 0;">
+    <ul>
+        <% options.forEach(option => { %>
+            <li><a href="<%= option.url %>"><%= option.name %></a></li>
+        <% }); %>
+    </ul>
+    <div id="viewportWidth"></div>
+    <script>
+        function displayViewportWidth() {
+            document.getElementById('viewportWidth').innerText = 'Viewport width: ' + window.innerWidth + 'px';
+        }
+        window.onresize = displayViewportWidth;
+        displayViewportWidth();
+    </script>
+</body>
+</html>

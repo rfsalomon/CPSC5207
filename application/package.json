@@ -1,0 +1,21 @@
+{
+  "name": "cpsc5207",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Group F - CPSC5207",
+  "license": "ISC",
+  "description": "Sample node.js application to access blockchain",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "fabric-ca-client": "^2.2.20",
+    "fabric-network": "^2.2.20",
+    "fetch": "^1.1.0",
+    "fs": "^0.0.1-security",
+    "node-fetch": "^2.6.1",
+    "serve-favicon": "^2.5.0"
+  }
+}
