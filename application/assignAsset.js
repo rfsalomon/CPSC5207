@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Route to display the assets
 router.get('/', async (req, res) => {
-    const url = 'http://localhost:3030/query?channelid=cpsc5207&chaincodeid=asset_contract&function=GetAllAssets';
+    const url = 'http://host.docker.internal:3030/query?channelid=cpsc5207&chaincodeid=asset_contract&function=GetAllAssets';
 
     try {
         const response = await fetch(url);
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 // Route to handle the asset assignment
 router.put('/assign', async (req, res) => {
     const { id, assignee } = req.body;
-    const url = `http://localhost:3030/invoke?channelid=cpsc5207&chaincodeid=asset_contract&function=TransferAsset&args=${id}&args=${assignee}`;
+    const url = `http://host.docker.internal:3030/invoke?channelid=cpsc5207&chaincodeid=asset_contract&function=TransferAsset&args=${id}&args=${assignee}`;
 
     try {
         const response = await fetch(url, { method: 'PUT' });

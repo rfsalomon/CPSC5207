@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const createAsset = async (req, res) => {
     const { id, dataHash, description, assignor, assignee } = req.body;
 
-    const url = `http://localhost:3030/invoke?channelid=cpsc5207&chaincodeid=asset_contract&function=CreateAsset&args=${id}&args=${dataHash}&args=${description}&args=${assignor}&args=${assignee}`;
+    const url = `http://host.docker.internal:3030/invoke?channelid=cpsc5207&chaincodeid=asset_contract&function=CreateAsset&args=${id}&args=${dataHash}&args=${description}&args=${assignor}&args=${assignee}`;
 
     try {
         const response = await fetch(url, { method: 'POST' });

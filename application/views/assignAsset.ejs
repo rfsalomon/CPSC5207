@@ -116,9 +116,10 @@
         async function assignAsset() {
             const assignee = document.getElementById('assignee').value;
             const url = `http://localhost:3030/invoke?channelid=cpsc5207&chaincodeid=asset_contract&function=TransferAsset&args=${currentAssetId}&args=${assignee}`;
-                const response = await fetch(url, {
-                    method: 'PUT', 
+            const response = await fetch(url, {
+                method: 'PUT', 
             });
+
             closePopup();
         }
         

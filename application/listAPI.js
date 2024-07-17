@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 
 async function listAssets() {
     try {
-        queryURL = 'http://localhost:3030/query?channelid=cpsc5207&chaincodeid=asset_contract&function=GetAllAssets';
+        queryURL = 'http://host.docker.internal:3030/query?channelid=cpsc5207&chaincodeid=asset_contract&function=GetAllAssets';
         const response = await fetch(queryURL);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
