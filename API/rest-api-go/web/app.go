@@ -25,6 +25,7 @@ func Serve(setups OrgSetup) {
 	http.HandleFunc("/query", setups.Query)
 	http.HandleFunc("/invoke", setups.Invoke)
 	fmt.Println("Listening (http://localhost:3030/)...")
+	fmt.Println("Press 'Enter' to shutdown...")
 	if err := http.ListenAndServe(":3030", nil); err != nil {
 		fmt.Println(err)
 	}
