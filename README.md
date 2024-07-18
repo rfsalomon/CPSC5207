@@ -7,6 +7,8 @@
 ### Krupa Kadecha
 ### Roberto Salomon
 
+We used the code available on the hyperledger test-network as base for the current project. The Hyperledger test-network is available from the fabric-samples repository at https://github.com/hyperledger/fabric-samples
+
 ## Basic startup instructions
 
 - Ensure docker is running.
